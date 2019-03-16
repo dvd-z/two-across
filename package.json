@@ -1,0 +1,23 @@
+{
+  "name": "two-across",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Crossword client that scrapes online sources for grids.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvd-z/two-across.git"
+  },
+  "author": "Zhiyuan Zhou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dvd-z/shuffly/issues"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/dvd-z/two-across#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
