@@ -1,5 +1,5 @@
 {
-  "name": "two-across",
+  "name": "two-across-client",
   "version": "0.1.0",
   "private": true,
   "description": "Crossword client that scrapes online sources for grids.",
