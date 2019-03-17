@@ -18,6 +18,11 @@
   },
   "homepage": "https://github.com/dvd-z/two-across#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "puppeteer": "^1.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
