@@ -11,10 +11,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/parse/:src', async (req, res) => {
-    if (!Constants.SOURCES.has(req.params.src)) {
+    const source = req.params.src;
+    if (!Constants.SOURCES.includes(source)) {
         res.sendStatus(400);
     }
-    const url = Constants.SOURCES.get(req.params.src);
+    const url = Constants.SOURCE_URL_MAP.get(source);
+    const parse = Constants.SOURCE_PARSE_MAP.get(source);
 
     puppeteer
         .launch()
@@ -23,7 +25,10 @@ app.get('/parse/:src', async (req, res) => {
             await page.goto(url);
             return await page.content();
         })
-        .then()
+        .then(async html => {
+            const hrefArr = await parse(html);
+            console.log(hrefArr);
+        })
         .catch(err => console.error(err));
 
     res.sendStatus(200);
