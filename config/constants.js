@@ -1,13 +1,18 @@
-const nyt = require('../parse/nyt');
+const NYT = 'nyt';
+const WAPO = 'wapo';
+const WSJ = 'wsj';
 
 module.exports = {
-    SOURCES: ['nyt', 'wapo', 'wsj'],
-    SOURCE_PARSE_MAP: new Map([
-        ['nyt', nyt]
-    ]),
+    ACROSS: 'ACROSS',
+    DOWN: 'DOWN',
+    NYT: NYT,
+    NYT_LINK_SUBSTR: '/crosswords/game/daily/',
+    SOURCES: [NYT, WAPO, WSJ],
     SOURCE_URL_MAP: new Map([
-        ['nyt', 'https://nytimes.com/crosswords'],
-        ['wapo', 'https://washingtonpost.com/crossword-puzzles/daily/'],
-        ['wsj', 'https://blogs.wsj.com/puzzle/category/crossword/']
-    ])
+        [NYT, 'https://nytimes.com/crosswords'],
+        [WAPO, 'https://washingtonpost.com/crossword-puzzles/daily/'],
+        [WSJ, 'https://blogs.wsj.com/puzzle/category/crossword/']
+    ]),
+    WAPO: WAPO,
+    WSJ: WSJ
 };
