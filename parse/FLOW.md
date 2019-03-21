@@ -20,6 +20,9 @@
 <a name="nyt"></a>
 ### NYT
 
+- The link parser will not parse links to Minis.
+- There is no reveal button parser because there is no identifying feature of the button.
+
 <a name="wapo"></a>
 ### WAPO
 
