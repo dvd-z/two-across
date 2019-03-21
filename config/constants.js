@@ -3,8 +3,8 @@ const WAPO = 'wapo';
 const WSJ = 'wsj';
 
 module.exports = {
-    ACROSS: 'ACROSS',
-    DOWN: 'DOWN',
+    ACROSS: 'across',
+    DOWN: 'down',
     NYT: NYT,
     NYT_LINK_SUBSTR: '/crosswords/game/daily/',
     SOURCES: [NYT, WAPO, WSJ],

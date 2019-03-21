@@ -16,7 +16,7 @@ async function parseEntry(html) {
 async function parseClues(html, direction) {
     return $('h3', html)
         .filter((i, el) =>
-            $(el).text().toLocaleUpperCase().includes(direction)
+            $(el).text().toLocaleLowerCase().includes(direction)
         ).map((i, el) =>
             $(el)['0'].next
         ).map((i, el) => {
