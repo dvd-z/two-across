@@ -20,12 +20,12 @@ async function parseClues(html, direction) {
         ).map((i, el) =>
             $(el)['0'].next
         ).map((i, el) => {
-            const labels = $(`span[class*='label']`, el)
+            const labels = $(`span[class *= '${Constants.LABEL}' i]`, el)
                 .toArray()
                 .map(el =>
                     $(el).text()
                 );
-            const text = $(`span[class*='text']`, el)
+            const text = $(`span[class *= '${Constants.TEXT}' i]`, el)
                 .toArray()
                 .map(el =>
                     $(el).text()
