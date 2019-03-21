@@ -13,10 +13,10 @@ async function parseEntry(html) {
         ).toArray();
 }
 
-async function parseAcross(html) {
+async function parseClues(html, direction) {
     return $('h3', html)
         .filter((i, el) =>
-            $(el).text().toLocaleUpperCase().includes(Constants.ACROSS)
+            $(el).text().toLocaleUpperCase().includes(direction)
         ).map((i, el) =>
             $(el)['0'].next
         ).map((i, el) => {
@@ -35,6 +35,6 @@ async function parseAcross(html) {
 }
 
 module.exports = {
-    parseAcross: parseAcross,
+    parseClues: parseClues,
     parseEntry: parseEntry
 };

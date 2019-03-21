@@ -5,7 +5,7 @@ module.exports = {
     SOURCE_PARSE_ENTRY_MAP: new Map([
         [Constants.NYT, nyt.parseEntry]
     ]),
-    SOURCE_PARSE_ACROSS_MAP: new Map([
-        [Constants.NYT, nyt.parseAcross]
+    SOURCE_PARSE_CLUES_MAP: new Map([
+        [Constants.NYT, nyt.parseClues]
     ])
 };
