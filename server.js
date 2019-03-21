@@ -18,19 +18,13 @@ app.get('/parse/:src', async (req, res) => {
     }
     const url = Constants.SOURCE_URL_MAP.get(source);
 
-    puppeteer
-        .launch()
-        .then(browser => browser.newPage())
-        .then(async page => {
-            await page.goto(url);
-            return await page.content();
-        })
-        .then(async html => {
-            const parse = parseMaps.SOURCE_PARSE_ENTRY_MAP.get(source);
-            const hrefArr = await parse(html);
-            console.log(hrefArr);
-        })
-        .catch(err => console.error(err));
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
+    const html = await page.content();
+    const parse = parseMaps.SOURCE_PARSE_ENTRY_MAP.get(source);
+    const hrefArr = await parse(html);
+    console.log(hrefArr);
 
     res.sendStatus(200);
 });
