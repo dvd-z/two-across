@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const puppeteer = require('puppeteer');
+const parseMaps = require('./config/parseMaps');
 const Constants = require('./config/constants');
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -16,7 +17,6 @@ app.get('/parse/:src', async (req, res) => {
         res.sendStatus(400);
     }
     const url = Constants.SOURCE_URL_MAP.get(source);
-    const parse = Constants.SOURCE_PARSE_MAP.get(source);
 
     puppeteer
         .launch()
@@ -26,6 +26,7 @@ app.get('/parse/:src', async (req, res) => {
             return await page.content();
         })
         .then(async html => {
+            const parse = parseMaps.SOURCE_PARSE_ENTRY_MAP.get(source);
             const hrefArr = await parse(html);
             console.log(hrefArr);
         })
