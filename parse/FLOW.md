@@ -21,8 +21,9 @@
 ### NYT
 
 - The link parser will not parse links to Minis.
-- There is no reveal button parser because there is no identifying feature of the button.
+- Puppeteer does not need to click on a button to get to the crosswords since the URLs are given once parsed.
 - The NYT requires a different `BASE_URL` constant because of duplicate routing in the crossword URLs.
+- There is no reveal button parser because there is no identifying feature of the button. Instead, puppeteer's selector is used.
 
 <a name="wapo"></a>
 ### WAPO
