@@ -18,7 +18,7 @@ async function parseClues(html, direction) {
         .filter((i, el) =>
             $(el).text().toLocaleLowerCase().includes(direction)
         ).map((i, el) =>
-            $(el)['0'].next
+            el.next
         ).map((i, el) => {
             const labels = $(`span[class *= '${Constants.LABEL}' i]`, el)
                 .toArray()
