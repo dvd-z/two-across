@@ -1,0 +1,36 @@
+{
+  "name": "two-across-client",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Crossword client that scrapes online sources for grids.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvd-z/two-across.git"
+  },
+  "author": "Zhiyuan Zhou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dvd-z/shuffly/issues"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:5000/",
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "2.1.8"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "two-across",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "Crossword client that scrapes online sources for grids.",
   "repository": {
@@ -12,24 +12,18 @@
   "bugs": {
     "url": "https://github.com/dvd-z/shuffly/issues"
   },
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "homepage": "https://github.com/dvd-z/two-across#readme",
   "dependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "cheerio": "^1.0.0-rc.2",
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "puppeteer": "^1.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
   }
 }
