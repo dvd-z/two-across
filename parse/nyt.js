@@ -1,5 +1,6 @@
 const $ = require('cheerio');
 const zip = require('lodash/zip');
+const createCell = require('./createCell');
 const Constants = require('../config/constants');
 
 async function parseEntry(html) {
@@ -34,7 +35,17 @@ async function parseClues(html, direction) {
         }).toArray();
 }
 
+async function parseGrid(html) {
+    return $('g', html)
+        .filter((i, el) =>
+            !Object.keys(el.attribs).length
+        ).map((i, el) =>
+            createCell(i, el)
+        ).toArray();
+}
+
 module.exports = {
     parseClues: parseClues,
+    parseGrid: parseGrid,
     parseEntry: parseEntry
 };

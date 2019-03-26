@@ -18,5 +18,8 @@ module.exports = {
     ]),
     SOURCE_PARSE_ENTRY_MAP: new Map([
         [Constants.NYT, nyt.parseEntry]
+    ]),
+    SOURCE_PARSE_GRID_MAP: new Map([
+        [Constants.NYT, nyt.parseGrid]
     ])
 };
