@@ -1,8 +1,9 @@
+const Cell = require('./Cell');
 /**
  * Class representing a fillable cell.
  * @extends Cell
  */
-class WhiteCell extends Cell {
+module.exports = class WhiteCell extends Cell {
     /**
      * Create a fillable cell.
      * @param {number} id - The id.
