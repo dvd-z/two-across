@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const puppeteer = require('puppeteer');
 const chunk = require('lodash/chunk');
+const Crossword = require('./models/Crossword');
 const isPerfectSquare = require('./functions/isPerfectSquare');
 const parseMaps = require('./config/parseMaps');
 const Constants = require('./config/constants');
@@ -38,14 +39,16 @@ app.get('/parse/:src', async (req, res) => {
     const clues = {};
     clues[Constants.ACROSS] = await parseClues(html, Constants.ACROSS);
     clues[Constants.DOWN] = await parseClues(html, Constants.DOWN);
-    console.log(clues);
     const parseGrid = parseMaps.SOURCE_PARSE_GRID_MAP.get(source);
     const gridArr = await parseGrid(html);
     if (!isPerfectSquare(gridArr.length)) {
         throw new Error('The parsed grid is not a square.');
     }
     const grid = chunk(gridArr, Math.sqrt(gridArr.length));
-    console.log(grid);
+    const crossword = new Crossword(source, clues, grid);
+    console.log(crossword.source);
+    console.log(crossword.clues);
+    console.log(crossword.grid);
 
     res.sendStatus(200);
 });
