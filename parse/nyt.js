@@ -40,7 +40,7 @@ async function parseGrid(html) {
         .filter((i, el) =>
             !Object.keys(el.attribs).length
         ).map((i, el) =>
-            createCell(i, el)
+            createCell(i, el.children)
         ).toArray();
 }
 
