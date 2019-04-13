@@ -15,7 +15,7 @@ const puppeteer = require('puppeteer');
 const chunk = require('lodash/chunk');
 const Crossword = require('./models/Crossword');
 const isPerfectSquare = require('./functions/isPerfectSquare');
-const parseMaps = require('./config/parseMaps');
+const puppeteerConfig = require('./parse/puppeteerConfig');
 const Constants = require('./config/constants');
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -36,20 +36,20 @@ app.get('/parse/:src', async (req, res) => {
     const page = await browser.newPage();
     await page.goto(url);
     var html = await page.content();
-    const parseEntry = parseMaps.SOURCE_PARSE_ENTRY_MAP.get(source);
+    const parseEntry = puppeteerConfig.SOURCE_PARSE_ENTRY_MAP.get(source);
     const hrefArr = await parseEntry(html);
     await page.goto(baseUrl + hrefArr[2]);
     html = await page.content();
-    const clickReveal = parseMaps.SOURCE_CLICK_REVEAL_MAP.get(source);
+    const clickReveal = puppeteerConfig.SOURCE_CLICK_REVEAL_MAP.get(source);
     for (let selector of clickReveal) {
         await page.click(selector);
     }
     html = await page.content();
-    const parseClues = parseMaps.SOURCE_PARSE_CLUES_MAP.get(source);
+    const parseClues = puppeteerConfig.SOURCE_PARSE_CLUES_MAP.get(source);
     const clues = {};
     clues[Constants.ACROSS] = await parseClues(html, Constants.ACROSS);
     clues[Constants.DOWN] = await parseClues(html, Constants.DOWN);
-    const parseGrid = parseMaps.SOURCE_PARSE_GRID_MAP.get(source);
+    const parseGrid = puppeteerConfig.SOURCE_PARSE_GRID_MAP.get(source);
     const gridArr = await parseGrid(html);
     if (!isPerfectSquare(gridArr.length)) {
         throw new Error('The parsed grid is not a square.');

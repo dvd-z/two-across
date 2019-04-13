@@ -1,5 +1,5 @@
-const Constants = require('./constants');
-const nyt = require('../parse/nyt');
+const Constants = require('../config/constants');
+const nyt = require('./nyt');
 
 module.exports = {
     SOURCE_CLICK_REVEAL_MAP: new Map([
