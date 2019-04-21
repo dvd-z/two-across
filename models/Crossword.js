@@ -13,7 +13,7 @@ module.exports = class Crossword {
      * @param {Cell[][]} grid - The representation of the grid. 
      */
     constructor(source, clues, grid) {
-        if (!Constants.SOURCES.includes(source)) {
+        if (!Constants.SOURCES.has(source)) {
             throw new TypeError('"source" must be a valid source.');
         }
         this.source = source;

@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
 app.get('/parse/:src', async (req, res) => {
     const source = req.params.src;
-    if (!Constants.SOURCES.includes(source)) {
+    if (!Constants.SOURCES.has(source)) {
         res.sendStatus(400);
     }
     const url = Constants.SOURCE_URL_MAP.get(source);

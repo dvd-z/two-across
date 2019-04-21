@@ -9,7 +9,7 @@ module.exports = {
     MIDDLE: 'middle',
     NYT: NYT,
     NYT_LINK_SUBSTR: '/crosswords/game/daily/',
-    SOURCES: [NYT, WAPO, WSJ],
+    SOURCES: new Set([NYT, WAPO, WSJ]),
     SOURCE_BASE_URL_MAP: new Map([
         [NYT, 'https://www.nytimes.com']
     ]),
