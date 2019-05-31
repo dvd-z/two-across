@@ -55,10 +55,13 @@ app.get('/parse/:src', async (req, res) => {
         throw new Error('The parsed grid is not a square.');
     }
     const grid = chunk(gridArr, Math.sqrt(gridArr.length));
-    const crossword = new Crossword(source, clues, grid);
+    const date = hrefArr[2].substr(hrefArr[2].indexOf('daily') + 6);
+    const crossword = new Crossword(source, date, clues, grid);
     console.log(crossword.source);
+    console.log(crossword.date);
     console.log(crossword.clues);
     console.log(crossword.grid);
+    console.log(crossword.id);
 
     res.sendStatus(200);
 });
