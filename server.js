@@ -12,9 +12,10 @@ const db = firebase.firestore(firebase.initializeApp({
     messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID
 }));
 const puppeteer = require('puppeteer');
-const chunk = require('lodash/chunk');
+const _ = require('lodash');
 const Crossword = require('./models/Crossword');
 const isPerfectSquare = require('./functions/isPerfectSquare');
+const toJson = require('./functions/toJson');
 const puppeteerConfig = require('./parse/puppeteerConfig');
 const Constants = require('./config/constants');
 
@@ -54,14 +55,21 @@ app.get('/parse/:src', async (req, res) => {
     if (!isPerfectSquare(gridArr.length)) {
         throw new Error('The parsed grid is not a square.');
     }
-    const grid = chunk(gridArr, Math.sqrt(gridArr.length));
+    const grid = _.chunk(gridArr, Math.sqrt(gridArr.length));
     const date = hrefArr[2].substr(hrefArr[2].indexOf('daily') + 6);
     const crossword = new Crossword(source, date, clues, grid);
-    console.log(crossword.source);
-    console.log(crossword.date);
-    console.log(crossword.clues);
-    console.log(crossword.grid);
-    console.log(crossword.id);
+
+    const crosswordRef = db.collection('crosswords').doc(crossword.id);
+    crosswordRef.set({
+        source: crossword.source,
+        date: crossword.date
+    })
+        .then(() => console.log('Crossword successfully saved.'))
+        .catch(err => console.error(err));
+
+    clues[Constants.ACROSS] = _.flatten(clues[Constants.ACROSS]);
+    clues[Constants.DOWN] = _.flatten(clues[Constants.DOWN]);
+    crosswordRef.collection('metadata').doc("clues").set(clues);
 
     res.sendStatus(200);
 });
