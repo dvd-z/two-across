@@ -4,12 +4,8 @@ const createCell = require('./createCell');
 const Constants = require('../config/constants');
 
 async function parseEntry(html) {
-    return $('a', html)
-        .filter((i, el) =>
-            $(el).attr('href')
-        ).filter((i, el) =>
-            $(el).attr('href').includes(Constants.NYT_LINK_SUBSTR)
-        ).map((i, el) =>
+    return $(`a[href*=${Constants.NYT_LINK_SUBSTR} i]`, html)
+        .map((i, el) =>
             el.attribs.href
         ).toArray();
 }
