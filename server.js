@@ -36,11 +36,10 @@ app.get('/parse/:src', async (req, res) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
-    var html = await page.content();
+    let html = await page.content();
     const parseEntry = puppeteerConfig.SOURCE_PARSE_ENTRY_MAP.get(source);
     const hrefArr = await parseEntry(html);
     await page.goto(baseUrl + hrefArr[2]);
-    html = await page.content();
     const clickReveal = puppeteerConfig.SOURCE_CLICK_REVEAL_MAP.get(source);
     for (let selector of clickReveal) {
         await page.click(selector);
@@ -70,6 +69,24 @@ app.get('/parse/:src', async (req, res) => {
     clues[Constants.ACROSS] = _.flatten(clues[Constants.ACROSS]);
     clues[Constants.DOWN] = _.flatten(clues[Constants.DOWN]);
     crosswordRef.collection('metadata').doc("clues").set(clues);
+
+    res.sendStatus(200);
+});
+
+app.get('/crosswords', (req, res) => {
+    const crosswordRef = db.collection('crosswords');
+
+    crosswordRef
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(`${doc.id} =>`);
+                console.log(doc.data());
+            });
+        }).catch((error) => {
+            console.log('Error: ' + error)
+            res.sendStatus(400);
+        });
 
     res.sendStatus(200);
 });

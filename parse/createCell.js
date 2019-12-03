@@ -20,9 +20,9 @@ module.exports = function createCell(i, children) {
                 $(node).attr(Constants.TEXT_ANCHOR).toLocaleLowerCase().includes(Constants.START)
             );
         if (!label) {
-            return new WhiteCell(i, $(answer).text());
+            return new WhiteCell(i, $(answer).text().charAt());
         } else {
-            return new WhiteCell(i, $(answer).text(), $(label).text());
+            return new WhiteCell(i, $(answer).text().charAt(), $(label).text());
         }
     }
 }
