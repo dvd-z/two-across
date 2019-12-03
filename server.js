@@ -72,3 +72,21 @@ app.get('/parse/:src', async (req, res) => {
 
     res.sendStatus(200);
 });
+
+app.get('/crosswords', (req, res) => {
+    const crosswordRef = db.collection('crosswords');
+
+    crosswordRef
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(`${doc.id} =>`);
+                console.log(doc.data());
+            });
+        }).catch((error) => {
+            console.log('Error: ' + error)
+            res.sendStatus(400);
+        });
+
+    res.sendStatus(200);
+});
