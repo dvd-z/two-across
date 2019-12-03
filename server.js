@@ -36,11 +36,10 @@ app.get('/parse/:src', async (req, res) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
-    var html = await page.content();
+    let html = await page.content();
     const parseEntry = puppeteerConfig.SOURCE_PARSE_ENTRY_MAP.get(source);
     const hrefArr = await parseEntry(html);
     await page.goto(baseUrl + hrefArr[2]);
-    html = await page.content();
     const clickReveal = puppeteerConfig.SOURCE_CLICK_REVEAL_MAP.get(source);
     for (let selector of clickReveal) {
         await page.click(selector);

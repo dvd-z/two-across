@@ -21,10 +21,15 @@ module.exports = class Crossword {
         this.date = new Date(date);
         this.clues = clues;
         this.grid = grid;
-        this.id = this.generateId(this.source, this.date);
+        this.id = Crossword.generateId(this.source, this.date);
     }
 
-    generateId(source, date) {
+    /**
+     * Generates an ID for a crossword
+     * @param {string} source - The source of the crossword (e.g. NYT).
+     * @param {Date} date - The date the crossword was made.
+     */
+    static generateId(source, date) {
         return `${source}-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     }
 }
